@@ -6,8 +6,11 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 /*
  * While the server is running, this class automatically detects the project's
@@ -24,7 +27,7 @@ public class ApiDocConfig {
 
     @Bean
     public OpenAPI MyApi() {
-        final String apiTitle = "Solar System Geek REST API";
+        final String apiTitle = "Mod 2 Final Project";
         final String securitySchemeName = "bearerAuth";
         final SecurityScheme securityScheme = new SecurityScheme()
                 .name(securitySchemeName)
@@ -33,8 +36,9 @@ public class ApiDocConfig {
                 .bearerFormat("JWT");
 
         return new OpenAPI()
+                .servers(List.of(new Server().url("/")))
                 .info(new Info().title(apiTitle)
-                        .description("REST API for the Solar System Geek Corporation™")
+                        .description("My final project for modual 2")
                         .version("v0.0.1")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")))
                 .components( new Components().addSecuritySchemes(securitySchemeName, securityScheme))
